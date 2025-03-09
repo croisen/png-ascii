@@ -32,7 +32,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    printf("Image: %s\n", argv[1]);
+    printf("Image: %s\n", file);
     printf(
         "Image width: %d\theight: %d\tChannels: %d\n",
         width, height, channels

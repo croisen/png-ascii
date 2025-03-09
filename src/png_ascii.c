@@ -4,6 +4,8 @@
 
 #include "png_ascii.h"
 
+#define MAX_WIDTH 80
+
 void png_ascii(int width, int height, int channels, stbi_uc *img, bool colored)
 {
     struct channel_1 *ch1 = (void *)img;
@@ -11,11 +13,10 @@ void png_ascii(int width, int height, int channels, stbi_uc *img, bool colored)
     struct channel_3 *ch3 = (void *)img;
     struct channel_4 *ch4 = (void *)img;
 
-    int wincr = (width  > 80) ? width  / 80 : 1;
-    int hincr = (height > 45) ? height / 45 : 1;
-    for (int i = 0; i < height; i+= hincr)
+    int incr = (width > MAX_WIDTH) ? width / MAX_WIDTH : 1;
+    for (int i = 0; i < height; i+= incr)
     {
-        for (int j = 0; j < width; j += wincr)
+        for (int j = 0; j < width; j += incr)
         {
             struct channel_3 _ch3;
             switch (channels)
